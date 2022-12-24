@@ -65,7 +65,7 @@ public class AgentController {
 	public ResponseEntity putAgent(@PathVariable("name") String name, @RequestBody Agent agentBody) {
 
 		Agent agent = agentRepository.findByName(name);
-		if (agent != null) {
+		
 			agent.setDateAdd(agentBody.getDateAdd());
 			agent.setIp(agentBody.getIp());
 			agent.setLastKeepAlive(agentBody.getLastKeepAlive());
@@ -75,8 +75,6 @@ public class AgentController {
 			agent.setStatus(agentBody.getStatus());
 			agentRepository.save(agent);
 			return ok("Updated successfully !");
-		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("/agents")
